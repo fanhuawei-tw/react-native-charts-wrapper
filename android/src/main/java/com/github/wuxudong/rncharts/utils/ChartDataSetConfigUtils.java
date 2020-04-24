@@ -13,7 +13,6 @@ import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
 import com.github.mikephil.charting.formatter.LargeValueFormatter;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.wuxudong.rncharts.charts.CustomFormatter;
-import com.github.wuxudong.rncharts.charts.DateSinceFormatter;
 import com.github.wuxudong.rncharts.charts.DateFormatter;
 import com.github.wuxudong.rncharts.charts.IndexValueFormatter;
 
@@ -82,14 +81,12 @@ public class ChartDataSetConfigUtils {
                 }
 
                 Locale locale = Locale.getDefault();
-
+                
                 if (BridgeUtils.validate(config, ReadableType.String, "locale")) {
                     locale = Locale.forLanguageTag(config.getString("locale"));
                 }
 
                 dataSet.setValueFormatter(new DateFormatter(valueFormatterPattern, since, timeUnit, locale));
-            } else if ("dateSince".equals(valueFormatter)) {
-                 dataSet.setValueFormatter(new DateSinceFormatter());
             } else {
                 dataSet.setValueFormatter(new CustomFormatter(valueFormatter));
             }
